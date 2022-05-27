@@ -71,6 +71,11 @@ end
 The OneSignal-specific configuration information can be set in either environment variables or more dynamically via code. To access your app ID
 and REST API key, please view the [documentation](https://documentation.onesignal.com/docs/accounts-and-keys).
 
+Choose one of the following ways to provide your OneSignal-specific configuration:
+1. [Using Environment Variables](#Using Environment Variables)
+2. [Using Application Configuration](#Using Application Configuration)
+3. [Using ActionMailer Configuration](#Using ActionMailer Configuration)
+
 ### Using Environment Variables
 Ensure the OneSignal environment variables have been set, the `OneSignal::Rails::Plugin` module will pick these up automatically
 ```
@@ -124,7 +129,7 @@ no additional changes are required. Your existing ActionMailers will now send em
 
 ## OneSignal Extensions
 The mail functionality is extended to include additional attributes provided by the OneSignal API.  These attributes should be specified within your
-ActionMailer through the `mail` invocation.  See `[Examples](#Examples)` for examples of how to invoke `mail` to exploit these extensions.
+ActionMailer through the `mail` invocation.  See [Examples](#Examples) for examples of how to invoke `mail` to exploit these extensions.
 
 ### template_id (string)
 Specifies the id of a template created within OneSignal that should be used, rather than the body provided by your application (either via the `body`
@@ -151,12 +156,12 @@ This allows for greater customization of notification being sent.  Example of pa
 - *throttle_rate_per_minute:* throttle delivery of the notification, either because throttling is not enabled at the application level or to override the application level throttling settings.
 
 Note the following are not currently supported by the Ruby API library.
-- name: identifier for tracking this message within the OneSignal dashboard or export analytics, not shown to the end user.
-- disable_email_click_tracking: When true the URLs in the email will not change to link tracking URLs and will stay the same as originally set. Best used for emails containing Universal Links.  Defaults to false.
+- *name:* identifier for tracking this message within the OneSignal dashboard or export analytics, not shown to the end user.
+- *disable_email_click_tracking:* When true the URLs in the email will not change to link tracking URLs and will stay the same as originally set. Best used for emails containing Universal Links.  Defaults to false.
 
 Note the following are not currently supported by the API backend.
-- delayed_option: Can be `timezone` or `last-active`.
-- delivery_time_of_day: when delayed_option=timezone, this is the time of day to deliver within the timezone.
+- *delayed_option:* Can be `timezone` or `last-active`.
+- *delivery_time_of_day:* when delayed_option=timezone, this is the time of day to deliver within the timezone.
 
 ## Examples
 
