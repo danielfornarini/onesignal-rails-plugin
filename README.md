@@ -72,9 +72,9 @@ The OneSignal-specific configuration information can be set in either environmen
 and REST API key, please view the [documentation](https://documentation.onesignal.com/docs/accounts-and-keys).
 
 Choose one of the following ways to provide your OneSignal-specific configuration:
-1. [Using Environment Variables](#Using Environment Variables)
-2. [Using Application Configuration](#Using Application Configuration)
-3. [Using ActionMailer Configuration](#Using ActionMailer Configuration)
+1. [Using Environment Variables](#Using-Environment-Variables)
+2. [Using Application Configuration](#Using-Application-Configuration)
+3. [Using ActionMailer Configuration](#Using-ActionMailer-Configuration)
 
 ### Using Environment Variables
 Ensure the OneSignal environment variables have been set, the `OneSignal::Rails::Plugin` module will pick these up automatically
