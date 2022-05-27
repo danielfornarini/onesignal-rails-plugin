@@ -14,7 +14,6 @@
   </a>
 </p>
 
-
 OneSignal - the Ruby on Rails gem for OneSignal
 
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
@@ -23,7 +22,7 @@ This gem provides OneSignal integration via the Ruby on Rails ActionMailer. A cu
 your Action Mailers to send emails through the OneSignal API.  Additional extensions to the mail functionality are provided to take
 advantage of OneSignal's customer engagement platform! 
 
-### 🖤 [RubyGems](https://rubygems.org/gems/onesignal-rails)
+### 🖤 [RubyGems](https://rubygems.org/gems/onesignal-rails-plugin)
 
 ## 🚧 In Beta 🚧
 
@@ -32,7 +31,7 @@ advantage of OneSignal's customer engagement platform!
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onesignal-rails', '~> 1.0.0.beta1'
+gem 'onesignal-rails-plugin', '~> 1.0.0.beta1'
 ```
 
 And then execute:
@@ -41,10 +40,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install onesignal-rails -pre
+    $ gem install onesignal-rails-plugin -pre
 
 Or install from Github:
-    $ gem "onesignal-rails", '~> 1.0.0.beta1', git: 'git://github.com/OneSignal/onesignal-rails-plugin.git'
+
+    $ gem "onesignal-rails-plugin", '~> 1.0.0.beta1', git: 'git://github.com/OneSignal/onesignal-rails-plugin.git'
 
 
 ## Configuration
@@ -68,22 +68,22 @@ class MyOneSignalActionMailer < ActionMailer::Base
 end
 ```
 
-The configuration information can be set in either environment variables or more dynamically via code. To access your app ID and REST API key, please
-view the [documentation](https://documentation.onesignal.com/docs/accounts-and-keys).
+The OneSignal-specific configuration information can be set in either environment variables or more dynamically via code. To access your app ID
+and REST API key, please view the [documentation](https://documentation.onesignal.com/docs/accounts-and-keys).
 
 ### Using Environment Variables
-Ensure the OneSignal environment variables have been set, the `OneSignalRails` module will pick these up automatically
+Ensure the OneSignal environment variables have been set, the `OneSignal::Rails::Plugin` module will pick these up automatically
 ```
 ONESIGNAL_APP_KEY = 'your-app-key'
 ONESIGNAL_APP_ID = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
 ```
 
 ### Using Application Configuration
-The `OneSignalRails` module can be configured in code by creating initializer file `config/initializers/onesignal_rails.rb` and adding the following
+The `OneSignal::Rails::Plugin` module can be configured in code by creating initializer file `config/initializers/onesignal_rails_plugin.rb` and adding the following
 (Warning: for security purposes, REST API keys should not be hardcoded into your application)
 
 ```ruby
-OneSignalRails.configure do |c|
+OneSignal::Rails::Plugin.configure do |c|
   c.app_key = 'your-app-key'
   c.app_id = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
 end
@@ -101,8 +101,8 @@ config.action_mailer.onesignal_settings = {
     }
 ```
 
-Similar to how the `delivery_method` is configured, alternatively a specific ActionMailer can be configured to have ActionMailer-specific configuration
-information.  Within your ActionMailer add the following (Warning: for security purposes, REST API keys should not be hardcoded into your application)
+Similar to how the `delivery_method` is configured, alternatively a specific ActionMailer can be configured to have a more granular configuration.  Within your
+ActionMailer add the following (Warning: for security purposes, REST API keys should not be hardcoded into your application)
 
 ```ruby
 class MyOneSignalActionMailer < ActionMailer::Base
@@ -119,7 +119,7 @@ end
 ```
 
 ## Usage
-If the purpose of the ActionMailer is to generate a transactional email where the email address, subject, and body are specified within the application,
+If the purpose of the ActionMailer is to generate a transactional email where the recipient, subject, and body are specified within the application,
 no additional changes are required. Your existing ActionMailers will now send emails through your OneSignal integration!
 
 ## OneSignal Extensions
@@ -128,7 +128,7 @@ ActionMailer through the `mail` invocation.  See `[Examples](#Examples)` for exa
 
 ### template_id (string)
 Specifies the id of a template created within OneSignal that should be used, rather than the body provided by your application (either via the `body`
-parameter, or defined within the view of the ActionMailer). To use the subject within the template, specify a `OneSignalRails::USE_TEMPLATE_SUBJECT` within
+parameter, or defined within the view of the ActionMailer). To use the subject within the template, specify a `OneSignal::Rails::Plugin::USE_TEMPLATE_SUBJECT` within
 the `subject` parameter.  If the `subject` parameter is set to anything else, it will be used as the subject of the email, overriding the subject within the template. 
 
 ### include_external_user_ids (string array)
@@ -146,17 +146,17 @@ A string array that lists the OneSignal segments that will not be the recipients
 ### custom_notification_args (object)
 An object that allows for customizing the email notification that will be sent.  Each property key and value of the object will be copied into the payload of the create notification operation.
 This allows for greater customization of notification being sent.  Example of parameters that would most likely be specified within this object:
-    - *external_id:* Correlation and idempotency key.
-    - *send_after:* Schedule the message for future delivery.
-    - *throttle_rate_per_minute:* throttle delivery of the notification, either because throttling is not enabled at the application level or to override the application level throttling settings.
+- *external_id:* Correlation and idempotency key.
+- *send_after:* Schedule the message for future delivery.
+- *throttle_rate_per_minute:* throttle delivery of the notification, either because throttling is not enabled at the application level or to override the application level throttling settings.
 
 Note the following are not currently supported by the Ruby API library.
-    - name: identifier for tracking this message within the OneSignal dashboard or export analytics, not shown to the end user.
-    - disable_email_click_tracking: When true the URLs in the email will not change to link tracking URLs and will stay the same as originally set. Best used for emails containing Universal Links.  Defaults to false.
+- name: identifier for tracking this message within the OneSignal dashboard or export analytics, not shown to the end user.
+- disable_email_click_tracking: When true the URLs in the email will not change to link tracking URLs and will stay the same as originally set. Best used for emails containing Universal Links.  Defaults to false.
 
 Note the following are not currently supported by the API backend.
-    - delayed_option: Can be `timezone` or `last-active`.
-    - delivery_time_of_day: when delayed_option=timezone, this is the time of day to deliver within the timezone.
+- delayed_option: Can be `timezone` or `last-active`.
+- delivery_time_of_day: when delayed_option=timezone, this is the time of day to deliver within the timezone.
 
 ## Examples
 
@@ -171,7 +171,7 @@ mail(subject: "email example", from: 'no-reply@company.com', to: 'user@company.c
 mail(subject: "use OneSignal default from address example", to: 'user@company.co')
 
 # Send an email using a OneSignal template as both the subject and body of the email
-mail(subject: OneSignalRails::USE_TEMPLATE_SUBJECT, to: 'user@company.co', template_id: '00000000-0000-0000-0000-000000000000')
+mail(subject: OneSignal::Rails::Plugin::USE_TEMPLATE_SUBJECT, to: 'user@company.co', template_id: '00000000-0000-0000-0000-000000000000')
 
 # Send an email using a OneSignal template, overriding the subject specified on the template
 mail(subject: "template subject override example", to: 'user@company.co', template_id: '00000000-0000-0000-0000-000000000000')
@@ -209,8 +209,8 @@ To run the rspec tests
 
 The gem is available as open source under the terms of the [MIT License][mit].
 
-[rgb]: https://img.shields.io/gem/v/onesignal-rails.svg
-[rgl]: https://rubygems.org/gems/onesignal-rails
+[rgb]: https://img.shields.io/gem/v/onesignal-rails-plugin.svg
+[rgl]: https://rubygems.org/gems/onesignal-rails-plugin
 [osa]: https://documentation.onesignal.com/reference/
 [mit]: http://opensource.org/licenses/MIT
 

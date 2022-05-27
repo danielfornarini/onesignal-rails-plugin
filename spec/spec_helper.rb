@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require 'rails'
-require_relative '../lib/onesignal_rails'
+require_relative '../lib/onesignal/rails/plugin'
 
 APP_KEY = 'TEST_API_KEY'
 APP_ID = '00000000-0000-0000-0000-000000000000'
 
 RSpec.configure do |config|
   config.before(:each) do |_example|
-    OneSignalRails.configure do |c|
+    OneSignal::Rails::Plugin.configure do |c|
       c.app_key = APP_KEY
       c.app_id = APP_ID
     end

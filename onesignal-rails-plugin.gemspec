@@ -9,11 +9,11 @@
 #
 
 $LOAD_PATH.push File.expand_path('lib', __dir__)
-require 'onesignal_rails/version'
+require 'onesignal/rails/plugin/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'onesignal-rails'
-  s.version     = OneSignalRails::VERSION
+  s.name        = 'onesignal-rails-plugin'
+  s.version     = OneSignal::Rails::Plugin::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['OneSignal']
   s.email       = ['devrel@onesignal.com']

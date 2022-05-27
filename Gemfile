@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in onesignal-rails.gemspec
+# Specify your gem's dependencies in onesignal-rails-plugin.gemspec
 gemspec
 
 group :development, :test do
