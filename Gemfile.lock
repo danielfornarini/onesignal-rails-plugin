@@ -1,14 +1,8 @@
 PATH
-  remote: ../API-Client-Libraries/build/ruby
-  specs:
-    onesignal (1.0.0)
-      typhoeus (~> 1.0, >= 1.0.1)
-
-PATH
   remote: .
   specs:
     onesignal-rails-plugin (1.0.0)
-      onesignal (~> 1.0.0.beta1)
+      onesignal (~> 1.0.1)
       rails
 
 GEM
@@ -120,6 +114,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x86_64-darwin)
       racc (~> 1.4)
+    onesignal (1.0.1)
+      typhoeus (~> 1.0, >= 1.0.1)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -127,7 +123,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.3)
@@ -208,7 +204,6 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  onesignal (~> 1.0.0.pre.alpha)!
   onesignal-rails-plugin!
   pry
   rake (~> 13.0.1)

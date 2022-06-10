@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.license     = 'Modified MIT'
   s.required_ruby_version = '>= 2.5'
 
-  s.add_dependency 'onesignal', '~> 1.0.0.beta1'
+  s.add_dependency 'onesignal', '~> 1.0.1'
   s.add_dependency 'rails'
 
   s.add_development_dependency 'rake'
