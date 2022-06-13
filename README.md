@@ -24,14 +24,12 @@ advantage of OneSignal's customer engagement platform!
 
 ### 🖤 [RubyGems](https://rubygems.org/gems/onesignal-rails-plugin)
 
-## 🚧 In Beta 🚧
-
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onesignal-rails-plugin', '~> 1.0.0.beta1'
+gem 'onesignal-rails-plugin', '~> 1.0.0'
 ```
 
 And then execute:
@@ -40,11 +38,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install onesignal-rails-plugin -pre
+    $ gem install onesignal-rails-plugin
 
 Or install from Github:
 
-    $ gem "onesignal-rails-plugin", '~> 1.0.0.beta1', git: 'git://github.com/OneSignal/onesignal-rails-plugin.git'
+    $ gem "onesignal-rails-plugin", '~> 1.0.0', git: 'git://github.com/OneSignal/onesignal-rails-plugin.git'
 
 
 ## Configuration
