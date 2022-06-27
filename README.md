@@ -19,7 +19,7 @@ OneSignal - the Ruby on Rails gem for OneSignal
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
 This gem provides OneSignal integration via the Ruby on Rails ActionMailer. A custom delivery method `:onesignal` can be used to direct
-your Action Mailers to send emails through the OneSignal API.  Additional extensions to the mail functionality are provided to take
+your mailers to send emails through the OneSignal API.  Additional extensions to the mail functionality are provided to take
 advantage of OneSignal's customer engagement platform! 
 
 ### 🖤 [RubyGems](https://rubygems.org/gems/onesignal-rails-plugin)
@@ -34,7 +34,7 @@ gem 'onesignal-rails-plugin', '~> 1.0.0'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -54,10 +54,10 @@ add/change the following to the ActionMailer configuration
 config.action_mailer.delivery_method = :onesignal
 ```
 
-Alternatively a specific ActionMailer can be configured to use the OneSignal delivery method.  Within your ActionMailer
+Alternatively a specific mailer can be configured to use the OneSignal delivery method.  Within your mailer
 
 ```ruby
-class MyOneSignalActionMailer < ActionMailer::Base
+class MyOneSignalMailer < ActionMailer::Base
   self.delivery_method = :onesignal  
 
   def some_email(params)
@@ -99,20 +99,20 @@ be hardcoded into your application)
 
 ```ruby
 config.action_mailer.onesignal_settings = {
-      app_key = 'your-app-key',
-      app_id = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+      app_key: 'your-app-key',
+      app_id: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
     }
 ```
 
-Similar to how the `delivery_method` is configured, alternatively a specific ActionMailer can be configured to have a more granular configuration.  Within your
-ActionMailer add the following (Warning: for security purposes, REST API keys should not be hardcoded into your application)
+Similar to how the `delivery_method` is configured, alternatively a specific mailer can be configured to have a more granular configuration.  Within your
+mailer add the following (Warning: for security purposes, REST API keys should not be hardcoded into your application)
 
 ```ruby
-class MyOneSignalActionMailer < ActionMailer::Base
+class MyOneSignalMailer < ActionMailer::Base
   self.delivery_method = :onesignal
   self.onesignal_settings = {
-      app_key = 'your-app-key',
-      app_id = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+      app_key: 'your-app-key',
+      app_id: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
     }
 
   def some_email(params)
@@ -122,16 +122,16 @@ end
 ```
 
 ## Usage
-If the purpose of the ActionMailer is to generate a transactional email where the recipient, subject, and body are specified within the application,
-no additional changes are required. Your existing ActionMailers will now send emails through your OneSignal integration!
+If the purpose of the mailer is to generate a transactional email where the recipient, subject, and body are specified within the application,
+no additional changes are required. Your existing mailers will now send emails through your OneSignal integration!
 
 ## OneSignal Extensions
 The mail functionality is extended to include additional attributes provided by the OneSignal API.  These attributes should be specified within your
-ActionMailer through the `mail` invocation.  See [Examples](#Examples) for examples of how to invoke `mail` to exploit these extensions.
+mailer through the `mail` invocation.  See [Examples](#Examples) for examples of how to invoke `mail` to exploit these extensions.
 
 ### template_id (string)
 Specifies the id of a template created within OneSignal that should be used, rather than the body provided by your application (either via the `body`
-parameter, or defined within the view of the ActionMailer). To use the subject within the template, specify a `OneSignal::Rails::Plugin::USE_TEMPLATE_SUBJECT` within
+parameter, or defined within the view of the mailer). To use the subject within the template, specify a `OneSignal::Rails::Plugin::USE_TEMPLATE_SUBJECT` within
 the `subject` parameter.  If the `subject` parameter is set to anything else, it will be used as the subject of the email, overriding the subject within the template. 
 
 ### include_external_user_ids (string array)
@@ -163,8 +163,8 @@ Note the following are not currently supported by the API backend.
 
 ## Examples
 
-The following shows examples of how to invoke the `mail` function within your ActionMailer when integrated with OneSignal. Note the body is not specified as it is assumed to be generated through the view associated
-to the ActionMailer.  This is not an exhaustive list, and different examples could be combined depending on your specific scenario.
+The following shows examples of how to invoke the `mail` function within your mailer when integrated with OneSignal. Note the body is not specified as it is assumed to be generated through the view associated
+to the mailer.  This is not an exhaustive list, and different examples could be combined depending on your specific scenario.
 
 ```ruby
 # Send a transactional email to a specific recipient (standard ActionMailer usage) 
