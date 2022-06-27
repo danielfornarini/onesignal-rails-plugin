@@ -99,8 +99,8 @@ be hardcoded into your application)
 
 ```ruby
 config.action_mailer.onesignal_settings = {
-      app_key = 'your-app-key',
-      app_id = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+      app_key: 'your-app-key',
+      app_id: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
     }
 ```
 
@@ -111,8 +111,8 @@ mailer add the following (Warning: for security purposes, REST API keys should n
 class MyOneSignalMailer < ActionMailer::Base
   self.delivery_method = :onesignal
   self.onesignal_settings = {
-      app_key = 'your-app-key',
-      app_id = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+      app_key: 'your-app-key',
+      app_id: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
     }
 
   def some_email(params)
