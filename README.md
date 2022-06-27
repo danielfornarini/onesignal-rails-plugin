@@ -47,7 +47,7 @@ Or install from Github:
 
 ## Configuration
 
-To change all action mailers to target the OneSignal integration, edit `config/application.app` or `config/environments/$ENVIRONMENT.rb` and 
+To change all action mailers to target the OneSignal integration, edit `config/application.rb` or `config/environments/$ENVIRONMENT.rb` and 
 add/change the following to the ActionMailer configuration
 
 ```ruby
@@ -93,7 +93,7 @@ end
 ```
 
 ### Using ActionMailer Configuration
-For more granular and dynamic control, you can also configure as part of the ActionMailer configuration.  Edit `config/application.app` or
+For more granular and dynamic control, you can also configure as part of the ActionMailer configuration.  Edit `config/application.rb` or
 `config/environments/$ENVIRONMENT.rb` and add the following to the ActionMailer configuration (Warning: for security purposes, REST API keys should not
 be hardcoded into your application)
 
