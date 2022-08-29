@@ -1,0 +1,125 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  Exclude:
+    - '.gitignore'
+
+Rails:
+  Enabled: true
+
+Security:
+  Enabled: true
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 100
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  CountComments: false  # count full line comments?
+  Max: 100
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 100
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Description: A complexity metric that is strongly correlated to the number of
+    test cases needed to validate a method.
+  Enabled: false
+  Max: 10
+
+Style/RedundantReturn:
+  Description: "Don't use return where it's not required."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-explicit-return'
+  Enabled: true
+
+Style/StringLiterals:
+  # If true, strings which span multiple lines using \ for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: true
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+RSpec/NestedGroups:
+  Max: 12
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - staging
+    - test
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
