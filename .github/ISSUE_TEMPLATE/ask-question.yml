@@ -1,0 +1,25 @@
+name: 🙋‍♂️ Ask a question
+description: Tell us what's on your mind
+title: "[question]: "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Having issues integrating this plugin?
+  - type: textarea
+    id: question
+    attributes:
+      label: How can we help?
+      description: Specific question regarding integrating this plugin.
+      placeholder: How do I...?
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](#insert-project-code-of-conduct-here)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
