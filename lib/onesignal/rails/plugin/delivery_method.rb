@@ -98,7 +98,7 @@ module OneSignal
           if mail['template_id']
             notification.template_id = mail['template_id'].value
             raise mail['custom_data'].inspect
-            notification.custom_data = mail['custom_data'].value if mail['custom_data']
+            notification.custom_data = mail['custom_data'].unparsed_value if mail['custom_data']
           else
             case mail.mime_type
             when 'text/plain', 'text/html'
