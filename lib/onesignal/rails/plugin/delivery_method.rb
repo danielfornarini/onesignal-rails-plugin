@@ -97,6 +97,7 @@ module OneSignal
           # a specified template takes priority over any body provided within the mail
           if mail['template_id']
             notification.template_id = mail['template_id'].value
+            raise mail['custom_data'].inspect
             notification.custom_data = mail['custom_data'].value if mail['custom_data']
           else
             case mail.mime_type
